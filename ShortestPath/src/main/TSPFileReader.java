@@ -24,7 +24,6 @@ public class TSPFileReader {
 				String line = fileScanner.nextLine();
 				Matcher matcher = lonLatLinePattern.matcher(line);
 				matcher.find();
-				String test = matcher.group(1);
 				result.add(
 					new LonLat(
 						Double.valueOf(matcher.group(1)) / 1000f,
