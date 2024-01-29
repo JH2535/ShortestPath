@@ -19,7 +19,7 @@ class TSPFileReaderTest {
 	@Test
 	void opensValidFileTest() {
 		try {
-			TSPFileReader tspFileStream = new TSPFileReader(this.getValidFilePath());
+			new TSPFileReader(this.getValidFilePath());
 		} catch (FileNotFoundException e) {
 			fail(e.getMessage());
 		}
