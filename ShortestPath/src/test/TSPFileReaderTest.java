@@ -17,7 +17,7 @@ import main.TSPFileReader;
 class TSPFileReaderTest {
 
 	@Test
-	void opensValidFileTest() {
+	public void opensValidFileTest() {
 		try {
 			new TSPFileReader(this.getValidFilePath());
 		} catch (FileNotFoundException e) {
@@ -37,7 +37,7 @@ class TSPFileReaderTest {
 	}
 
 	@Test
-	void doesNotOpenInvalidFileTest() {
+	public void doesNotOpenInvalidFileTest() {
 		assertThrows(FileNotFoundException.class,
 			() -> {
 				new TSPFileReader(this.getInvalidFilePath());
@@ -51,7 +51,7 @@ class TSPFileReaderTest {
 	}
 
 	@Test
-	void readLonLatsTest() {
+	public void readLonLatsTest() {
 		Set<LonLat> expectedResults = new LinkedHashSet<LonLat>();
 		Collections.addAll(
 			expectedResults,
