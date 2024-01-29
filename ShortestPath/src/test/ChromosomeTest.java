@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
@@ -56,8 +57,17 @@ public class ChromosomeTest {
 	}
 	
 	@Test
-	public void ensurePassByValue() {
-		fail("Not implemented.");
+	public void testRandomise() {
+		Set<LonLat> path = getTestPath();
+		Chromosome first = new Chromosome(path, TEST_PATH_LENGTH);
+		Chromosome second = new Chromosome(path, TEST_PATH_LENGTH);
+		
+		first.randomise(473);
+		
+		boolean notSame = !first.equals(second);
+		boolean samePath = path.equals(getTestPath());
+		
+		assertTrue(notSame && samePath);
 	}
 	
 }
