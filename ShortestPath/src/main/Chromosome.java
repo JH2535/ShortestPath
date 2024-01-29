@@ -14,4 +14,21 @@ public class Chromosome {
 		}
 		this.path = path;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(path);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Chromosome other = (Chromosome) obj;
+		return Objects.equals(path, other.path);
+	}
 }

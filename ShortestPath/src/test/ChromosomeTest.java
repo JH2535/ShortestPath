@@ -38,4 +38,26 @@ public class ChromosomeTest {
 		);
 		return path;
 	}
+	
+	@Test
+	public void noDuplicateChromosomes() {
+		Chromosome first = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
+		Chromosome sameAsFirst = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
+		
+		Set<LonLat> slightlyDifferentPath = getTestPath();
+		slightlyDifferentPath.add(new LonLat(79.5255556, 5.9405556));
+		
+		Chromosome thirdPath = new Chromosome(slightlyDifferentPath, TEST_PATH_LENGTH + 1);
+		
+		Set<Chromosome> chromosomes = new LinkedHashSet<Chromosome>();
+		Collections.addAll(chromosomes, first, sameAsFirst, thirdPath);
+		
+		assertEquals(chromosomes.size(), 2);
+	}
+	
+	@Test
+	public void ensurePassByValue() {
+		fail("Not implemented.");
+	}
+	
 }
