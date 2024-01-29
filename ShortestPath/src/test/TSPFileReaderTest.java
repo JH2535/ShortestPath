@@ -5,8 +5,9 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,7 +52,7 @@ class TSPFileReaderTest {
 
 	@Test
 	void readLonLatsTest() {
-		ArrayList<LonLat> expectedResults = new ArrayList<>();
+		Set<LonLat> expectedResults = new LinkedHashSet<LonLat>();
 		Collections.addAll(
 			expectedResults,
 			new LonLat(49.5255556, 5.9405556),
@@ -62,7 +63,7 @@ class TSPFileReaderTest {
 		);
 		try {
 			TSPFileReader tspFileStream = new TSPFileReader(this.getTestPath());
-			ArrayList<LonLat> actualResults = tspFileStream.readLonLats();
+			Set<LonLat> actualResults = tspFileStream.readLonLats();
 
 			assertEquals(expectedResults, actualResults, "Not extracting same lon lats as expected from test.tsp");
 		} catch(Exception e) {

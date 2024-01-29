@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Objects;
+
 public class LonLat {
 	public double longitude;
 	public double latitude;
@@ -7,6 +9,11 @@ public class LonLat {
 	public LonLat(double longitude, double latitude) {
 		this.longitude = longitude;
 		this.latitude = latitude;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(latitude, longitude);
 	}
 
 	@Override

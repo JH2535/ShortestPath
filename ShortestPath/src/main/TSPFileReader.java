@@ -2,9 +2,9 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,8 +16,8 @@ public class TSPFileReader {
 		this.fileScanner = new Scanner(new File(filePath));
 	}
 
-	public ArrayList<LonLat> readLonLats() {
-		ArrayList<LonLat> result = new ArrayList<>();
+	public Set<LonLat> readLonLats() {
+		Set<LonLat> result = new LinkedHashSet<LonLat>();
 		Pattern lonLatLinePattern = Pattern.compile("\\d\\s(\\d+\\.\\d+)\\s(\\d+\\.\\d+)");
 		while(fileScanner.hasNextLine()) {
 			try {
