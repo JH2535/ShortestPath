@@ -8,14 +8,14 @@ import java.util.Set;
 
 public class Chromosome {
 
-	private List<LonLat> path;
+	private List<LatLon> path;
 	
-	public Chromosome(Set<LonLat> path, int expectedLength) 
+	public Chromosome(Set<LatLon> path, int expectedLength) 
 			throws IllegalStateException {
 		if ((path.size() + 1) != expectedLength) {
 			throw new IllegalStateException("Inconsistent size");
 		}
-		this.path = new ArrayList<LonLat>(path);
+		this.path = new ArrayList<LatLon>(path);
 	}
 
 	@Override
@@ -42,10 +42,10 @@ public class Chromosome {
 
 	public void randomise(int seed) {
 		Random rand = new Random(seed);
-		List<LonLat> result = new ArrayList<LonLat>();
+		List<LatLon> result = new ArrayList<LatLon>();
 		while(this.path.size() > 0) {
 			Object[] vals = this.path.toArray();
-			LonLat toBeSwapped = (LonLat) vals[rand.nextInt(vals.length)];
+			LatLon toBeSwapped = (LatLon) vals[rand.nextInt(vals.length)];
 			result.add(toBeSwapped);
 			this.path.remove(toBeSwapped);
 		}

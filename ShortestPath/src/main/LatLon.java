@@ -2,13 +2,13 @@ package main;
 
 import java.util.Objects;
 
-public class LonLat {
+public class LatLon {
 	public double longitude;
 	public double latitude;
 
-	public LonLat(double longitude, double latitude) {
-		this.longitude = longitude;
+	public LatLon(double latitude, double longitude) {
 		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	@Override
@@ -18,10 +18,10 @@ public class LonLat {
 
 	@Override
 	public boolean equals(Object other) {
-		if (!(other instanceof LonLat)){
+		if (!(other instanceof LatLon)){
 			return false;
 		}
-		LonLat knownLonLat = (LonLat) other;
+		LatLon knownLonLat = (LatLon) other;
 		return this.longitude == knownLonLat.longitude &&
 				this.latitude == knownLonLat.latitude;
 	}

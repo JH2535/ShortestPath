@@ -11,7 +11,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import main.LonLat;
+import main.LatLon;
 import main.TSPFileReader;
 
 class TSPFileReaderTest {
@@ -52,18 +52,18 @@ class TSPFileReaderTest {
 
 	@Test
 	public void readLonLatsTest() {
-		Set<LonLat> expectedResults = new LinkedHashSet<LonLat>();
+		Set<LatLon> expectedResults = new LinkedHashSet<LatLon>();
 		Collections.addAll(
 			expectedResults,
-			new LonLat(49.5255556, 5.9405556),
-			new LonLat(49.5255556, 5.9405556),
-			new LonLat(49.7388889, 6.3450000),
-			new LonLat(49.6083333, 6.4058333),
-			new LonLat(49.7966667, 6.1555556)
+			new LatLon(49.5255556, 5.9405556),
+			new LatLon(49.5255556, 5.9405556),
+			new LatLon(49.7388889, 6.3450000),
+			new LatLon(49.6083333, 6.4058333),
+			new LatLon(49.7966667, 6.1555556)
 		);
 		try {
 			TSPFileReader tspFileStream = new TSPFileReader(this.getTestPath());
-			Set<LonLat> actualResults = tspFileStream.readLonLats();
+			Set<LatLon> actualResults = tspFileStream.readLonLats();
 
 			assertEquals(expectedResults, actualResults, "Not extracting same lon lats as expected from test.tsp");
 		} catch(Exception e) {

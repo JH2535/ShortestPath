@@ -11,7 +11,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import main.Chromosome;
-import main.LonLat;
+import main.LatLon;
 
 public class ChromosomeTest {
 	
@@ -27,15 +27,15 @@ public class ChromosomeTest {
 		}
 	}
 	
-	private Set<LonLat> getTestPath() {
-		Set<LonLat> path = new LinkedHashSet<LonLat>();
+	private Set<LatLon> getTestPath() {
+		Set<LatLon> path = new LinkedHashSet<LatLon>();
 		Collections.addAll(
 			path,
-			new LonLat(49.5255556, 5.9405556),
-			new LonLat(49.5255556, 5.9405556),
-			new LonLat(49.7388889, 6.3450000),
-			new LonLat(49.6083333, 6.4058333),
-			new LonLat(49.7966667, 6.1555556)
+			new LatLon(49.5255556, 5.9405556),
+			new LatLon(49.5255556, 5.9405556),
+			new LatLon(49.7388889, 6.3450000),
+			new LatLon(49.6083333, 6.4058333),
+			new LatLon(49.7966667, 6.1555556)
 		);
 		return path;
 	}
@@ -45,8 +45,8 @@ public class ChromosomeTest {
 		Chromosome first = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
 		Chromosome sameAsFirst = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
 		
-		Set<LonLat> slightlyDifferentPath = getTestPath();
-		slightlyDifferentPath.add(new LonLat(79.5255556, 5.9405556));
+		Set<LatLon> slightlyDifferentPath = getTestPath();
+		slightlyDifferentPath.add(new LatLon(79.5255556, 5.9405556));
 		
 		Chromosome thirdPath = new Chromosome(slightlyDifferentPath, TEST_PATH_LENGTH + 1);
 		
@@ -58,7 +58,7 @@ public class ChromosomeTest {
 	
 	@Test
 	public void testRandomise() {
-		Set<LonLat> path = getTestPath();
+		Set<LatLon> path = getTestPath();
 		Chromosome first = new Chromosome(path, TEST_PATH_LENGTH);
 		Chromosome second = new Chromosome(path, TEST_PATH_LENGTH);
 		
