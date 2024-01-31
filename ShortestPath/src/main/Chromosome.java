@@ -12,7 +12,7 @@ public class Chromosome {
 	
 	public Chromosome(Set<LatLon> path, int expectedLength) 
 			throws IllegalStateException {
-		if ((path.size() + 1) != expectedLength) {
+		if (path.size() != expectedLength) {
 			throw new IllegalStateException("Inconsistent size");
 		}
 		this.path = new ArrayList<LatLon>(path);

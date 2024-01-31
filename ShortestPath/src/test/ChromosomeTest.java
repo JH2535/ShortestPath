@@ -15,12 +15,12 @@ import main.LatLon;
 
 public class ChromosomeTest {
 	
-	private final int TEST_PATH_LENGTH = 5;
+	private final int TEST_PATH_LENGTH = 4;
 
 	@Test
 	public void failsToCreateForInconsistentArguements() {
 		try {
-			new Chromosome(getTestPath(), TEST_PATH_LENGTH - 2);
+			new Chromosome(getTestPath(), TEST_PATH_LENGTH - 1);
 			fail("Created chromosome when length of path doesn't match expected");
 		} catch (IllegalStateException e) {
 			
