@@ -41,7 +41,7 @@ public class ChromosomeTest {
 	}
 	
 	@Test
-	public void noDuplicateChromosomes() {
+	public void worksWithSets() {
 		Chromosome first = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
 		Chromosome sameAsFirst = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
 		
