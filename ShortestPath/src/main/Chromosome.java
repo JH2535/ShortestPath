@@ -9,6 +9,7 @@ import java.util.Set;
 public class Chromosome {
 
 	private List<LatLon> path;
+	private double score;
 	
 	public Chromosome(Set<LatLon> path, int expectedLength) 
 			throws IllegalStateException {
@@ -16,6 +17,7 @@ public class Chromosome {
 			throw new IllegalStateException("Inconsistent size");
 		}
 		this.path = new ArrayList<LatLon>(path);
+		this.score = 0;
 	}
 
 	@Override
@@ -50,5 +52,24 @@ public class Chromosome {
 			this.path.remove(toBeSwapped);
 		}
 		this.path = result;
+	}
+
+	public double computeScore() {
+		if(this.score > 0) {
+			return this.score;
+		}
+		LatLon first = null;
+		LatLon previousLocation = null;
+		for(LatLon currentLocation: this.path) {
+			if(previousLocation == null) {
+				first = currentLocation;
+				previousLocation = currentLocation;
+				continue;
+			}
+			this.score += previousLocation.distanceTo(currentLocation);
+			previousLocation = currentLocation;
+		}
+		this.score += previousLocation.distanceTo(first);
+		return this.score;
 	}	
 }

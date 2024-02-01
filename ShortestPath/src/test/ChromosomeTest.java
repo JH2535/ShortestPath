@@ -70,4 +70,16 @@ public class ChromosomeTest {
 		assertTrue(notSame && samePath);
 	}
 	
+	@Test
+	public void testScoreComputation() {
+		Set<LatLon> path = getTestPath();
+		Chromosome chromosome = new Chromosome(path, TEST_PATH_LENGTH);
+		
+		double actualScore = chromosome.computeScore();
+		
+		double expectedScore = 114230;
+		
+		assertTrue(Math.abs(actualScore - expectedScore) < 5);
+	}
+	
 }
