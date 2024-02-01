@@ -15,9 +15,10 @@ public class LatLonTest {
 		
 		double actualDistance = newYork.distanceTo(losAng);
 		
-		double expectedDistance = 3935.7;
+		double expectedDistance = 3935700;
 		
-		assertTrue(Math.abs(actualDistance - expectedDistance) < 0.5);
+		assertTrue(Math.abs(actualDistance - expectedDistance) < 50);
 	
 	}
 }
+
