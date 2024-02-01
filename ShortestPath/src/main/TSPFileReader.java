@@ -16,8 +16,8 @@ public class TSPFileReader {
 		this.fileScanner = new Scanner(new File(filePath));
 	}
 
-	public Set<LonLat> readLonLats() {
-		Set<LonLat> result = new LinkedHashSet<LonLat>();
+	public Set<LatLon> readLonLats() {
+		Set<LatLon> result = new LinkedHashSet<LatLon>();
 		Pattern lonLatLinePattern = Pattern.compile("\\d\\s(\\d+\\.\\d+)\\s(\\d+\\.\\d+)");
 		while(fileScanner.hasNextLine()) {
 			try {
@@ -25,7 +25,7 @@ public class TSPFileReader {
 				Matcher matcher = lonLatLinePattern.matcher(line);
 				matcher.find();
 				result.add(
-					new LonLat(
+					new LatLon(
 						Double.valueOf(matcher.group(1)) / 1000f,
 						Double.valueOf(matcher.group(2)) / 1000f
 					)
