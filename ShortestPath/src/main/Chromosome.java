@@ -71,5 +71,13 @@ public class Chromosome {
 		}
 		this.score += previousLocation.distanceTo(first);
 		return this.score;
-	}	
+	}
+
+	public List<LatLon> getPath() {
+		return new ArrayList<>(this.path);
+	}
+
+	public int getPathLength() {
+		return this.path.size();
+	}
 }
