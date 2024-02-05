@@ -9,7 +9,7 @@ import main.LatLon;
 public class LatLonTest {
 
 	@Test
-	public void testDistance() {
+	public void distanceTest() {
 		LatLon newYork = new LatLon(40.714268, -74.005974);
 		LatLon losAng = new LatLon(34.0522, -118.2437);
 		

@@ -37,7 +37,7 @@ class TSPFileReaderTest {
 	}
 
 	@Test
-	public void doesNotOpenInvalidFileTest() {
+	public void invalidFilePathTest() {
 		assertThrows(FileNotFoundException.class,
 			() -> {
 				new TSPFileReader(this.getInvalidFilePath());
