@@ -51,7 +51,7 @@ class TSPFileReaderTest {
 	}
 
 	@Test
-	public void readLonLatsTest() {
+	public void readLatLonsTest() {
 		Set<LatLon> expectedResults = new LinkedHashSet<LatLon>();
 		Collections.addAll(
 			expectedResults,
