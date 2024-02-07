@@ -82,4 +82,14 @@ public class ChromosomeTest {
 		assertTrue(Math.abs(actualScore - expectedScore) < 5);
 	}
 	
+	@Test
+	public void emptyScoreComputionTest() {
+		Set<LatLon> path = new LinkedHashSet<>();
+		Chromosome chromosome = new Chromosome(path, 0);
+		double actualScore = chromosome.computeScore();
+		double expectedScore = 0;
+		
+		assertTrue(actualScore == expectedScore);
+	}
+	
 }

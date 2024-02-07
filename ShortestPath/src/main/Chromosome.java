@@ -55,7 +55,7 @@ public class Chromosome {
 	}
 
 	public double computeScore() {
-		if(this.score > 0) {
+		if(this.score > 0 || (this.path.size() == 0)) {
 			return this.score;
 		}
 		LatLon first = null;
