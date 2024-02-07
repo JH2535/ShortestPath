@@ -27,7 +27,7 @@ public class LatLon {
 	}
 
 	public double distanceTo(LatLon destination) {
-		double earthsRad = 6371000;
+		double earthsRad = 6371;
 		
 		double dLat = Math.toRadians((destination.latitude - this.latitude));
 	    double dLong = Math.toRadians((destination.longitude - this.longitude));

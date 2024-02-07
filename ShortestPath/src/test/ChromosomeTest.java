@@ -18,7 +18,7 @@ public class ChromosomeTest {
 	private final int TEST_PATH_LENGTH = 4;
 
 	@Test
-	public void failsToCreateForInconsistentArguements() {
+	public void creationTest() {
 		try {
 			new Chromosome(getTestPath(), TEST_PATH_LENGTH - 1);
 			fail("Created chromosome when length of path doesn't match expected");
@@ -41,7 +41,7 @@ public class ChromosomeTest {
 	}
 	
 	@Test
-	public void worksWithSets() {
+	public void worksWithSetsTest() {
 		Chromosome first = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
 		Chromosome sameAsFirst = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
 		
@@ -57,7 +57,7 @@ public class ChromosomeTest {
 	}
 	
 	@Test
-	public void testRandomise() {
+	public void randomiseTest() {
 		Set<LatLon> path = getTestPath();
 		Chromosome first = new Chromosome(path, TEST_PATH_LENGTH);
 		Chromosome second = new Chromosome(path, TEST_PATH_LENGTH);
@@ -71,15 +71,25 @@ public class ChromosomeTest {
 	}
 	
 	@Test
-	public void testScoreComputation() {
+	public void scoreComputationTest() {
 		Set<LatLon> path = getTestPath();
 		Chromosome chromosome = new Chromosome(path, TEST_PATH_LENGTH);
 		
 		double actualScore = chromosome.computeScore();
 		
-		double expectedScore = 114230;
+		double expectedScore = 114.23;
 		
-		assertTrue(Math.abs(actualScore - expectedScore) < 5);
+		assertTrue(Math.abs(actualScore - expectedScore) < 0.005);
+	}
+	
+	@Test
+	public void emptyScoreComputionTest() {
+		Set<LatLon> path = new LinkedHashSet<>();
+		Chromosome chromosome = new Chromosome(path, 0);
+		double actualScore = chromosome.computeScore();
+		double expectedScore = 0;
+		
+		assertTrue(actualScore == expectedScore);
 	}
 	
 }

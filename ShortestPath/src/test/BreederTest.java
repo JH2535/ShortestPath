@@ -22,7 +22,7 @@ public class BreederTest {
 	private final int PATH_LENGTH = 8;
 	
 	@Test 
-	public void breederRequiresDifferentParents() {
+	public void breederRequiresDifferentParentsTest() {
 		Chromosome father = new Chromosome(getFatherPath(), PATH_LENGTH);
 		Chromosome fatherCopy = new Chromosome(getFatherPath(), PATH_LENGTH);
 		try {
@@ -50,7 +50,7 @@ public class BreederTest {
 	}
 
 	@Test
-	public void breedingDoesNotEffectParents() {
+	public void breedingDoesNotEffectParentsTest() {
 		Chromosome father = new Chromosome(getFatherPath(), PATH_LENGTH);
 		Chromosome fatherCopy = new Chromosome(getFatherPath(), PATH_LENGTH);
 		
@@ -83,7 +83,7 @@ public class BreederTest {
 	}
 	
 	@Test
-	public void childIsDifferentFromEachParent() {
+	public void childIsDifferentFromEachParentTest() {
 		Chromosome father = new Chromosome(getFatherPath(), PATH_LENGTH);
 		Chromosome mother = new Chromosome(getMotherPath(), PATH_LENGTH);
 		
@@ -102,7 +102,7 @@ public class BreederTest {
 	}
 	
 	@Test
-	public void childHasParentsCharacteristics() {
+	public void childHasParentsCharacteristicsTest() {
 		Chromosome father = new Chromosome(getFatherPath(), PATH_LENGTH);
 		Chromosome mother = new Chromosome(getMotherPath(), PATH_LENGTH);
 		
