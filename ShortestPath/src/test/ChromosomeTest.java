@@ -77,9 +77,9 @@ public class ChromosomeTest {
 		
 		double actualScore = chromosome.computeScore();
 		
-		double expectedScore = 114230;
+		double expectedScore = 114.23;
 		
-		assertTrue(Math.abs(actualScore - expectedScore) < 5);
+		assertTrue(Math.abs(actualScore - expectedScore) < 0.005);
 	}
 	
 	@Test
