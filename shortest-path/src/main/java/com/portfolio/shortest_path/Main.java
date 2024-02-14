@@ -1,4 +1,4 @@
-package main;
+package com.portfolio.shortest_path;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		String currentDirectory = System.getProperty("user.dir");
 		StringBuilder pathBuilder = new StringBuilder(currentDirectory);
-		pathBuilder.append("\\src\\data\\lu980.tsp");
+		pathBuilder.append("\\src\\main\\java\\com\\portfolio\\data\\lu980.tsp");
 		String filePath = pathBuilder.toString();
 		
 		try {

@@ -1,4 +1,4 @@
-package main;
+package com.portfolio.shortest_path;
 
 import java.util.ArrayList;
 import java.util.List;

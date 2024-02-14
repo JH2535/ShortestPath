@@ -1,4 +1,4 @@
-package test;
+package com.portfolio.shortest_path;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -13,9 +13,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import main.Breeder;
-import main.Chromosome;
-import main.LatLon;
 
 public class BreederTest {
 	

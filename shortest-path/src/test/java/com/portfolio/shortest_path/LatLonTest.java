@@ -1,10 +1,9 @@
-package test;
+package com.portfolio.shortest_path;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import main.LatLon;
 
 public class LatLonTest {
 

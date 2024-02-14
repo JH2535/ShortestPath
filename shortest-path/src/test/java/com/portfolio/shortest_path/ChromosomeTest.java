@@ -1,4 +1,4 @@
-package test;
+package com.portfolio.shortest_path;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -10,8 +10,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import main.Chromosome;
-import main.LatLon;
 
 public class ChromosomeTest {
 	
