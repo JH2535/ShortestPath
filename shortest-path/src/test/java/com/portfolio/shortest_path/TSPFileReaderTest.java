@@ -1,4 +1,4 @@
-package test;
+package com.portfolio.shortest_path;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
@@ -11,8 +11,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import main.LatLon;
-import main.TSPFileReader;
 
 class TSPFileReaderTest {
 
@@ -33,7 +31,7 @@ class TSPFileReaderTest {
 	}
 
 	private String getValidFilePath() {
-		return this.constructPathTo("\\src\\data\\lu980.tsp");
+		return this.constructPathTo("\\src\\main\\java\\com\\portfolio\\data\\lu980.tsp");
 	}
 
 	@Test
@@ -74,7 +72,7 @@ class TSPFileReaderTest {
 	}
 
 	private String getTestPath() {
-		return this.constructPathTo("\\src\\data\\test.tsp");
+		return this.constructPathTo("\\src\\main\\java\\com\\portfolio\\data\\test.tsp");
 	}
 
 }

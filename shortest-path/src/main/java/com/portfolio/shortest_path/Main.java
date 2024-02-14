@@ -1,4 +1,4 @@
-package main;
+package com.portfolio.shortest_path;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;

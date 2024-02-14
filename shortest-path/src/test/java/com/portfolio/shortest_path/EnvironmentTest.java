@@ -1,4 +1,4 @@
-package test;
+package com.portfolio.shortest_path;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,8 +8,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import main.Chromosome;
-import main.Environment;
 
 
 public class EnvironmentTest {
@@ -43,7 +41,7 @@ public class EnvironmentTest {
 	}
 
 	private String getValidFilePath() {
-		return this.constructPathTo("\\src\\data\\lu980.tsp");
+		return this.constructPathTo("\\src\\main\\java\\com\\portfolio\\data\\lu980.tsp");
 	}
 
 }
