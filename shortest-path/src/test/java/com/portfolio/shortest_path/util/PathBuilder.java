@@ -8,11 +8,21 @@ public class PathBuilder {
 		String currentDirectory = System.getProperty("user.dir");
 		relativePath.insert(0, currentDirectory);
 	}
-
-	public String getFilePath(String fileName) {
+	
+	private StringBuilder getFilePathBuilder(String fileName) {
 		StringBuilder pathToFile = new StringBuilder(this.absoluteLocation);
 		pathToFile.append(fileName);
 		this.prependUserDir(pathToFile);
+		return pathToFile;
+	}
+
+	public String getFilePath(String fileName) {
+		return this.getFilePathBuilder(fileName).toString();
+	}
+	
+	public String getFilePath(String fileName, boolean isDir) {
+		StringBuilder pathToFile = this.getFilePathBuilder(fileName);
+		pathToFile.append("//");
 		return pathToFile.toString();
 	}
 
