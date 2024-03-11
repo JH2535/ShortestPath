@@ -44,4 +44,12 @@ public class LatLon {
 	double haversine(double val) {
 	    return Math.pow(Math.sin(val / 2), 2);
 	}
+
+	public double getLat() {
+		return this.latitude;
+	}
+
+	public double getLon() {
+		return this.longitude;
+	}
 }
