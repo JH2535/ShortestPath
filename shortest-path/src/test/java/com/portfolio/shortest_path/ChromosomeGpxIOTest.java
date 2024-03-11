@@ -22,6 +22,30 @@ public class ChromosomeGpxIOTest {
 	private PathBuilder pathBuilder = new PathBuilder();
 	
 	@Test
+	public void accurateReadWrite() {
+		String gpxFileName = "test_file.gpx";
+		Chromosome chromosome = this.getTestChromosome();
+		ChromosomeGpxIO gpx = new ChromosomeGpxIO();
+		try {
+			gpx.writeGpx(chromosome, gpxFileName);
+		} catch (IOException e) {
+			fail("Couldn't write to gpx file");
+		}
+		try {
+			List<LatLon> writeReadPath = gpx.readFile(gpxFileName);
+			List<LatLon> expectedPath = chromosome.getPath();
+			StringBuilder filePath = new StringBuilder(pathBuilder.getFilePath("gpx_out/"));
+			filePath.append(gpxFileName);
+			File file = new File(filePath.toString());
+			file.delete();
+			assertEquals(expectedPath, writeReadPath);
+		} catch (IOException e) {
+			fail("Failed to read gpx file");
+		}
+		
+	}
+	
+	@Test
 	public void writeGpxMakesFileTest() {
 		String dirPath = pathBuilder.getFilePath("gpx_out");
 		File dir = new File(dirPath);

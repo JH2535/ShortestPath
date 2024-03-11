@@ -22,6 +22,20 @@ public class ChromosomeGpxIO {
 	public ChromosomeGpxIO() {
 	}
 
+	public List<LatLon> readFile(String file) throws IOException {
+		StringBuilder fullPath = new StringBuilder(this.dir);
+		fullPath.append(file);
+		return GPX.read(Path.of(fullPath.toString())).tracks()
+				.flatMap(Track::segments)
+				.flatMap(TrackSegment::points)
+				.map(p -> 
+				new LatLon(
+						p.getLatitude().doubleValue(), 
+						p.getLongitude().doubleValue()
+				)
+		).toList();
+	}
+	
 	public void writeGpx(Chromosome chromosome) throws IOException {
 		String hashCode = Integer.toString(chromosome.hashCode());
 		long time = System.currentTimeMillis();
