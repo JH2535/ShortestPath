@@ -8,15 +8,15 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-
-
 public class EnvironmentTest {
+	
+	private PathBuilder pathBuilder = new PathBuilder();
 	
 	@Test
 	public void nextGenerationTest() {
 		try {
 			int seed = 443;
-			Environment environment = new Environment(getValidFilePath(), 443);
+			Environment environment = new Environment(pathBuilder.getFilePath("lu980.tsp"), 443);
 			int numChildren = 20;
 			Set<Chromosome> nextGeneration = environment.getNextGeneration(numChildren, seed);
 			
@@ -32,16 +32,4 @@ public class EnvironmentTest {
 			fail(e.getMessage());
 		}
 	}
-	
-	private String constructPathTo(String relativePath) {
-		String currentDirectory = System.getProperty("user.dir");
-		StringBuilder pathBuilder = new StringBuilder(currentDirectory);
-		pathBuilder.append(relativePath);
-		return pathBuilder.toString();
-	}
-
-	private String getValidFilePath() {
-		return this.constructPathTo("\\src\\main\\java\\com\\portfolio\\data\\lu980.tsp");
-	}
-
 }

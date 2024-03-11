@@ -13,25 +13,16 @@ import org.junit.jupiter.api.Test;
 
 
 class TSPFileReaderTest {
+	
+	private PathBuilder pathBuilder = new PathBuilder();
 
 	@Test
 	public void opensValidFileTest() {
 		try {
-			new TSPFileReader(this.getValidFilePath());
+			new TSPFileReader(pathBuilder.getFilePath("lu980.tsp"));
 		} catch (FileNotFoundException e) {
 			fail(e.getMessage());
 		}
-	}
-
-	private String constructPathTo(String relativePath) {
-		String currentDirectory = System.getProperty("user.dir");
-		StringBuilder pathBuilder = new StringBuilder(currentDirectory);
-		pathBuilder.append(relativePath);
-		return pathBuilder.toString();
-	}
-
-	private String getValidFilePath() {
-		return this.constructPathTo("\\src\\main\\java\\com\\portfolio\\data\\lu980.tsp");
 	}
 
 	@Test
@@ -60,7 +51,7 @@ class TSPFileReaderTest {
 			new LatLon(49.7966667, 6.1555556)
 		);
 		try {
-			TSPFileReader tspFileStream = new TSPFileReader(this.getTestPath());
+			TSPFileReader tspFileStream = new TSPFileReader(pathBuilder.getFilePath("test.tsp"));
 			Set<LatLon> actualResults = tspFileStream.readLonLats();
 
 			assertEquals(expectedResults, actualResults, "Not extracting same lon lats as expected from test.tsp");
@@ -70,9 +61,4 @@ class TSPFileReaderTest {
 
 
 	}
-
-	private String getTestPath() {
-		return this.constructPathTo("\\src\\main\\java\\com\\portfolio\\data\\test.tsp");
-	}
-
 }
