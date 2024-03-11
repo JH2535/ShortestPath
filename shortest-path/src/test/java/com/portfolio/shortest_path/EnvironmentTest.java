@@ -8,8 +8,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.portfolio.shortest_path.util.PathBuilder;
-
 public class EnvironmentTest {
 	
 	private PathBuilder pathBuilder = new PathBuilder();
