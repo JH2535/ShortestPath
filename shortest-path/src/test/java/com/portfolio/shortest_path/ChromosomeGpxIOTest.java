@@ -1,7 +1,6 @@
 package com.portfolio.shortest_path;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -10,10 +9,10 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
+
+import com.portfolio.shortest_path.util.FileWriterTester;
 
 public class ChromosomeGpxIOTest {
 	
@@ -27,7 +26,7 @@ public class ChromosomeGpxIOTest {
 		Chromosome chromosome = this.getTestChromosome();
 		ChromosomeGpxIO gpx = new ChromosomeGpxIO();
 		try {
-			gpx.writeGpx(chromosome, gpxFileName);
+			gpx.write(chromosome, gpxFileName);
 		} catch (IOException e) {
 			fail("Couldn't write to gpx file");
 		}
@@ -47,53 +46,8 @@ public class ChromosomeGpxIOTest {
 	
 	@Test
 	public void writeGpxMakesFileTest() {
-		String dirPath = pathBuilder.getFilePath("gpx_out");
-		File dir = new File(dirPath);
-		File[] files = dir.listFiles();
-		int preNumFiles = 0;
-		if (files != null) {
-			preNumFiles = files.length;
-		}
-		ChromosomeGpxIO gpxIo = new ChromosomeGpxIO();
-		try {
-			gpxIo.writeGpx(this.getTestChromosome());
-			files = dir.listFiles();
-			this.removeFileFor(dir, this.getTestChromosome());
-			int postNumFiles = files.length;
-			assertEquals(preNumFiles + 1, postNumFiles);
-		} catch(IOException e) {
-			fail("Didn't write to gpx file");
-		}
-		
-	}
-	
-	private void removeFileFor(File dir, Chromosome chromosome) throws IOException {
-		String hashString = Integer.toString(chromosome.hashCode());
-		Pattern filePattern = Pattern.compile("(-?\\d+?)_(\\d+?)(?:\\.gpx)");
-		long time = System.currentTimeMillis();
-		File[] filesInDir = dir.listFiles();
-		int indexToDelete = -1;
-		for(int i = 0; i < filesInDir.length; i++) {
-			String fileName = filesInDir[i].getName();
-			Matcher match = filePattern.matcher(fileName);
-			boolean isGenerated = match.find();
-			if(isGenerated) {
-				String currentHashString = match.group(1);
-				String currentTimeStampString = match.group(2);
-				boolean matchesHash = hashString.equals(currentHashString);
-				long currentTimeStamp = Long.parseLong(currentTimeStampString);
-				boolean inRange = currentTimeStamp > time - 60000;
-				indexToDelete = (matchesHash && inRange)? i : -1;
-				if (indexToDelete > -1) {
-					break;
-				}
-			}
-		}
-		if (indexToDelete > -1) {
-			filesInDir[indexToDelete].delete();
-			return;
-		}
-		throw new IOException("Could not find test file");
+		new FileWriterTester("gpx_out", "gpx", new ChromosomeGpxIO())
+		.writeMakesFile(this.getTestChromosome());
 	}
 
 	private Chromosome getTestChromosome() {

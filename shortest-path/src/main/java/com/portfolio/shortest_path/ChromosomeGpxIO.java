@@ -10,16 +10,18 @@ import io.jenetics.jpx.Track;
 import io.jenetics.jpx.TrackSegment;
 import io.jenetics.jpx.WayPoint;
 
-public class ChromosomeGpxIO {
+public class ChromosomeGpxIO extends ChromosomeWriter {
 
 	private PathBuilder pathBuilder = new PathBuilder();
 	private String dir = this.pathBuilder.getFilePath("gpx_out/");
 
 	public ChromosomeGpxIO(String dir) {
 		this.dir = dir;
+		this.fileExtension = "gpx";
 	}
 	
 	public ChromosomeGpxIO() {
+		this.fileExtension = "gpx";
 	}
 
 	public List<LatLon> readFile(String file) throws IOException {
@@ -36,19 +38,9 @@ public class ChromosomeGpxIO {
 		).toList();
 	}
 	
-	public void writeGpx(Chromosome chromosome) throws IOException {
-		String hashCode = Integer.toString(chromosome.hashCode());
-		long time = System.currentTimeMillis();
-		String timeString = Long.toString(time);
-		StringBuilder fileName = new StringBuilder();
-		fileName.append(hashCode);
-		fileName.append("_");
-		fileName.append(timeString);
-		fileName.append(".gpx");
-		this.writeGpx(chromosome, fileName.toString());
-	}
-
-	public void writeGpx(Chromosome chromosome, String fileName) throws IOException {
+	
+	@Override
+	public void write(Chromosome chromosome, String fileName) throws IOException {
 		List<LatLon> path = chromosome.getPath();
 		List<WayPoint> segPoints = path.stream().map(p -> WayPoint.builder()
 				     .lat(p.getLat()).lon(p.getLon())

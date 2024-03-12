@@ -16,7 +16,7 @@ public class EnvironmentTest {
 	public void nextGenerationTest() {
 		try {
 			int seed = 443;
-			Environment environment = new Environment(pathBuilder.getFilePath("lu980.tsp"), 443);
+			Environment environment = new Environment(pathBuilder.getFilePath("tsp_out/lu980.tsp"), 443);
 			int numChildren = 20;
 			Set<Chromosome> nextGeneration = environment.getNextGeneration(numChildren, seed);
 			

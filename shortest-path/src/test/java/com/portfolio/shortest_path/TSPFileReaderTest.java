@@ -19,7 +19,7 @@ class TSPFileReaderTest {
 	@Test
 	public void opensValidFileTest() {
 		try {
-			new TSPFileReader(pathBuilder.getFilePath("lu980.tsp"));
+			new TSPFileReader(pathBuilder.getFilePath("tsp_out/test.tsp"));
 		} catch (FileNotFoundException e) {
 			fail(e.getMessage());
 		}
@@ -51,7 +51,7 @@ class TSPFileReaderTest {
 			new LatLon(49.7966667, 6.1555556)
 		);
 		try {
-			TSPFileReader tspFileStream = new TSPFileReader(pathBuilder.getFilePath("test.tsp"));
+			TSPFileReader tspFileStream = new TSPFileReader(pathBuilder.getFilePath("tsp_out/test.tsp"));
 			Set<LatLon> actualResults = tspFileStream.readLonLats();
 
 			assertEquals(expectedResults, actualResults, "Not extracting same lon lats as expected from test.tsp");
