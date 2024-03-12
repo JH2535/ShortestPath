@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		String currentDirectory = System.getProperty("user.dir");
 		StringBuilder pathBuilder = new StringBuilder(currentDirectory);
-		pathBuilder.append("\\src\\main\\java\\com\\portfolio\\data\\lu980.tsp");
+		pathBuilder.append("/src/main/java/com/portfolio/data/tsp_out/lu980.tsp");
 		String filePath = pathBuilder.toString();
 		
 		try {
