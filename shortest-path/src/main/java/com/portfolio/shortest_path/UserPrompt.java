@@ -25,7 +25,9 @@ public class UserPrompt {
 			 generate [-f tsp_file] [-h] -n int
 			 list
 			 print [-i int]
-			 write
+			 gpx_write [-i int]
+			 tsp_write [-i int]
+			 exit [-s]
 			
 			""";
 	}
@@ -41,6 +43,8 @@ public class UserPrompt {
 			 at the expense of computation time)
 			 
 			 -i Index of a chromosome to display
+			 
+			 -s Optional save
 			""";
 	}
 }

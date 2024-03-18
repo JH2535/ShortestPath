@@ -17,11 +17,11 @@ public class UserPromptTest {
 		
 		boolean hasStartBlurb = hasStartBlurb(outputString);
 		
-		int numCommands = 4;
+		int numCommands = 6;
 		boolean expectedNumCommands = hasCommands(outputString, numCommands);
 		
 		
-		int numOptions = 5;
+		int numOptions = 6;
 		boolean expectedNumOptions = hasOptions(outputString, numOptions);
 		
 		assertTrue(hasStartBlurb && expectedNumCommands && expectedNumOptions);
