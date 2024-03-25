@@ -38,6 +38,12 @@ public class Breeder {
 	}
 
 	public Chromosome nextChild(int seed) {
+		Chromosome child = this.nextUnmutatedChild(seed);
+		child.mutate(seed);
+		return child;
+	}
+	
+	public Chromosome nextUnmutatedChild(int seed) {
 		int expectedLength = mother.getPathLength();
 		Random random = new Random(seed);
 		int minSnipSize = Math.max(2, expectedLength/10);

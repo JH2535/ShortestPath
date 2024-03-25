@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -99,22 +100,28 @@ public class BreederTest {
 	}
 	
 	@Test
-	public void childHasParentsCharacteristicsTest() {
+	public void unmutatedChildHasParentsCharacteristicsTest() {
 		Chromosome father = new Chromosome(getFatherPath(), PATH_LENGTH);
 		Chromosome mother = new Chromosome(getMotherPath(), PATH_LENGTH);
 		
 		Breeder breeder = new Breeder(mother, father);
 		int seed = 5543;
-		Chromosome child = breeder.nextChild(seed);
+		Chromosome child = breeder.nextUnmutatedChild(seed);
 		try {
-			Map<Integer,Integer> fathersMatchingSnips = findMatchingSnipStartLength(father, child);
-			Map<Integer,Integer> mothersMatchingSnips = findMatchingSnipStartLength(mother, child);
-			
+			Map<Integer, Integer> fathersMatchingSnips = findMatchingSnipStartLength(father, child);
+			Map<Integer, Integer> mothersMatchingSnips = findMatchingSnipStartLength(mother, child);
+
+			int fathersMaxSnipSize = maxSnipSize(fathersMatchingSnips);
+			int mothersMaxSnipSize = maxSnipSize(mothersMatchingSnips);
+
 			boolean isExpectedSize = child.getPathLength() == PATH_LENGTH;
-			boolean childHasSomeFatherSnips = fathersMatchingSnips.size() < PATH_LENGTH * 0.6;
-			boolean childHasSomeMotherSnips = mothersMatchingSnips.size() < PATH_LENGTH * 0.6;
-			
-			assertTrue(isExpectedSize && childHasSomeFatherSnips && childHasSomeMotherSnips);
+
+			boolean isRoughlySameSize = fathersMaxSnipSize <= mothersMaxSnipSize * 1.2
+					|| fathersMaxSnipSize >= mothersMaxSnipSize * 0.8;
+
+			boolean hasSomeContributation = fathersMaxSnipSize + mothersMaxSnipSize > 2;
+
+			assertTrue(isExpectedSize && isRoughlySameSize && hasSomeContributation);
 		} catch (NullPointerException e) {
 			fail(e.getMessage());
 		}
@@ -150,5 +157,14 @@ public class BreederTest {
 			count = 0;
 		}
 		return snipStartLengths;
+	}
+
+	private int maxSnipSize(Map<Integer, Integer> snips) {
+		int maxSnipSize = Integer.MIN_VALUE;
+		for (Entry<Integer, Integer> snip : snips.entrySet()) {
+			int snipSize = snip.getValue();
+			maxSnipSize = (snipSize > maxSnipSize) ? snipSize : maxSnipSize;
+		}
+		return maxSnipSize;
 	}
 }
