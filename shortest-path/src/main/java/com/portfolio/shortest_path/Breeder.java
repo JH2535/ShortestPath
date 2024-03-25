@@ -98,10 +98,11 @@ public class Breeder {
 		for(List<LatLon> currentCut: motherCuts) {
 			int indexOfCut = currentCut.lastIndexOf(base);
 			if(indexOfCut == -1) {
+				newCuts.add(currentCut);
 				continue;
 			}
 			List<LatLon> firstHalf = currentCut.subList(0, indexOfCut);
-			List<LatLon> secondHalf = currentCut.subList(indexOfCut, currentCut.size());
+			List<LatLon> secondHalf = currentCut.subList(indexOfCut + 1, currentCut.size());
 			newCuts.add(firstHalf);
 			newCuts.add(secondHalf);
 		}
