@@ -40,11 +40,11 @@ public class Breeder {
 	public Chromosome nextChild(int seed) {
 		int expectedLength = mother.getPathLength();
 		Random random = new Random(seed);
-		int minSnipSize = Math.max(Math.min(2, expectedLength - 1), expectedLength/5);
-		int maxSnipSize = Math.min(Math.max(3, expectedLength/3), expectedLength);
+		int minSnipSize = Math.max(2, expectedLength/10);
+		int maxSnipSize = Math.max(3, expectedLength/5);
 		
-		int snipSize = random.nextInt(minSnipSize, maxSnipSize);
-		int snipStartLoc = random.nextInt(expectedLength - snipSize);
+		int snipSize = random.nextInt(minSnipSize, maxSnipSize + 1);
+		int snipStartLoc = random.nextInt(expectedLength - snipSize + 1);
 		int offset = 0;
 		
 		this.fatherSnip = this.findFatherSnip(snipStartLoc, snipSize);
@@ -112,12 +112,11 @@ public class Breeder {
 	private boolean parentsContributionSimilarSize() {
 		int pathSize = this.father.getPathLength();
 		int fathersContribuationSize = this.fatherSnip.size();
+		double lowerThreshold = Math.floor(fathersContribuationSize - pathSize*PARENT_SIMILAR_PERCENT);
+		double upperThreshold = Math.ceil(fathersContribuationSize + pathSize*PARENT_SIMILAR_PERCENT);
 		for(List<LatLon> mothersCut: this.motherCuts) {
-			float lowerThreshold = fathersContribuationSize - pathSize*PARENT_SIMILAR_PERCENT;
 			boolean lowerBound = mothersCut.size() >= lowerThreshold;
-			float upperThreshold = fathersContribuationSize + pathSize*PARENT_SIMILAR_PERCENT;
 			boolean upperBound = mothersCut.size() <= upperThreshold;
-			
 			if(lowerBound && upperBound) {
 				return true;
 			}
