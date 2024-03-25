@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -88,6 +89,18 @@ public class ChromosomeTest {
 		double expectedScore = 0;
 		
 		assertTrue(actualScore == expectedScore);
+	}
+	
+	@Test
+	public void mutateTest() {
+		int seed = 5543;
+		Chromosome chromosome = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
+		Chromosome chromosomeCopy = new Chromosome(getTestPath(), TEST_PATH_LENGTH);
+		boolean isEqualPreMutation = chromosome.equals(chromosomeCopy);
+		chromosome.mutate(seed);
+		boolean notPostMutation = !chromosome.equals(chromosomeCopy);
+		
+		assertTrue(isEqualPreMutation && notPostMutation);
 	}
 	
 }

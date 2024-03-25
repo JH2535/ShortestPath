@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.Set;
 
 public class Chromosome {
+	
+	private final float MUTATION_RATE = 0.70f;
 
 	private List<LatLon> path;
 	private double score;
@@ -79,5 +81,17 @@ public class Chromosome {
 
 	public int getPathLength() {
 		return this.path.size();
+	}
+	
+	public void mutate(int seed) {
+		Random random = new Random(seed);
+		float roll = random.nextFloat();
+		if(roll > MUTATION_RATE) {
+			return;
+		}
+		int indexToSwapWithNext = random.nextInt(this.path.size() - 1);
+		LatLon temp = this.path.get(indexToSwapWithNext);
+		this.path.remove(indexToSwapWithNext);
+		this.path.add(indexToSwapWithNext + 1,temp);
 	}
 }
